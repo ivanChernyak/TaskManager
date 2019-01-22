@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="160.0" prefWidth="300.0"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.taskmanager.controllers.DeleteTaskController">
+    <children>
+        <AnchorPane prefHeight="160.0" prefWidth="300.0">
+            <children>
+                <Button fx:id="buttonDelete" layoutX="65.0" layoutY="108.0"
+                        mnemonicParsing="false" onAction="#deleteTask"
+                        text="Видалити"/>
+                <Button fx:id="buttonDeleteCancel" layoutX="171.0"
+                        layoutY="108.0" mnemonicParsing="false"
+                        onAction="#cancelDelete" text="Скасувати"/>
+                <Label layoutX="74.0" layoutY="22.0"
+                       text="Ви хочете видалити задачу:"/>
+                <Label fx:id="deleteTaskTitle" alignment="TOP_CENTER"
+                       contentDisplay="CENTER" layoutX="18.0" layoutY="46.0"
+                       prefHeight="46.0" prefWidth="265.0" text="Label"
+                       textAlignment="CENTER"/>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>

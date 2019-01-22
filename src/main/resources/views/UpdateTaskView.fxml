@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox minHeight="308.0" minWidth="300.0" prefHeight="321.0" prefWidth="300.0"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.taskmanager.controllers.UpdateTaskController">
+    <children>
+        <AnchorPane prefHeight="35.0" prefWidth="300.0">
+            <children>
+                <TextField fx:id="textTitle" prefHeight="25.0" prefWidth="239.0"
+                           promptText="Введіть назву"
+                           AnchorPane.bottomAnchor="5.0"
+                           AnchorPane.leftAnchor="20.0"
+                           AnchorPane.rightAnchor="20.0"
+                           AnchorPane.topAnchor="5.0"/>
+            </children>
+            <VBox.margin>
+                <Insets top="20.0"/>
+            </VBox.margin>
+        </AnchorPane>
+        <AnchorPane prefHeight="35.0" prefWidth="340.0">
+            <children>
+                <RadioButton fx:id="radioActive" layoutX="14.0" layoutY="9.0"
+                             mnemonicParsing="false" text="Активна"
+                             AnchorPane.leftAnchor="20.0"/>
+                <RadioButton fx:id="radioRepeat" layoutX="126.0" layoutY="9.0"
+                             mnemonicParsing="false" onAction="#actionRepeat"
+                             text="Повторювати" AnchorPane.leftAnchor="126.0"/>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="anchorPaneSimpleTask" prefHeight="35.0"
+                    prefWidth="300.0">
+            <children>
+                <DatePicker fx:id="datePickerTime" editable="false"
+                            layoutX="64.0" layoutY="5.0" prefHeight="25.0"
+                            prefWidth="120.0" promptText="Дата"
+                            AnchorPane.bottomAnchor="5.0"
+                            AnchorPane.leftAnchor="64.0"
+                            AnchorPane.rightAnchor="116.0"
+                            AnchorPane.topAnchor="5.0"/>
+                <Label layoutX="14.0" layoutY="5.0" text="Час"
+                       AnchorPane.bottomAnchor="5.0"
+                       AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="5.0"/>
+                <TextField fx:id="textTimeHour" alignment="TOP_CENTER"
+                           layoutX="193.0" layoutY="5.0" prefHeight="25.0"
+                           prefWidth="37.0" promptText="hh"
+                           AnchorPane.rightAnchor="70.0"/>
+                <TextField fx:id="textTimeMinute" alignment="TOP_CENTER"
+                           layoutX="243.0" layoutY="5.0" prefHeight="25.0"
+                           prefWidth="37.0" promptText="mm"
+                           AnchorPane.rightAnchor="20.0"/>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="anchorPaneRepeat" prefHeight="140.0"
+                    prefWidth="300.0">
+            <children>
+                <Label layoutX="20.0" layoutY="24.0" text="Старт"
+                       AnchorPane.leftAnchor="20.0"/>
+                <Label layoutX="20.0" layoutY="63.0" text="Кінець"
+                       AnchorPane.leftAnchor="20.0"/>
+                <DatePicker fx:id="datePickerStart" editable="false"
+                            layoutX="64.0" layoutY="20.0"
+                            onAction="#setEnableEndFields" prefHeight="25.0"
+                            prefWidth="120.0" promptText="Дата"
+                            AnchorPane.leftAnchor="64.0"
+                            AnchorPane.rightAnchor="116.0"/>
+                <DatePicker fx:id="datePickerEnd" editable="false"
+                            layoutX="64.0" layoutY="59.0" prefHeight="25.0"
+                            prefWidth="120.0" promptText="Дата"
+                            AnchorPane.leftAnchor="64.0"
+                            AnchorPane.rightAnchor="116.0"/>
+                <Label layoutX="20.0" layoutY="100.0" text="Інтервал"
+                       AnchorPane.leftAnchor="20.0"/>
+                <TextField fx:id="textIntervalHour" alignment="TOP_CENTER"
+                           layoutX="193.0" layoutY="96.0" prefHeight="25.0"
+                           prefWidth="37.0" promptText="hh"
+                           AnchorPane.rightAnchor="70.0"/>
+                <TextField fx:id="textStartMinute" alignment="TOP_CENTER"
+                           layoutX="243.0" layoutY="20.0" prefHeight="25.0"
+                           prefWidth="37.0" promptText="mm"
+                           AnchorPane.rightAnchor="20.0"/>
+                <TextField fx:id="textStartHour" alignment="TOP_CENTER"
+                           layoutX="193.0" layoutY="20.0" prefHeight="25.0"
+                           prefWidth="37.0" promptText="hh"
+                           AnchorPane.rightAnchor="70.0"/>
+                <TextField fx:id="textEndHour" alignment="TOP_CENTER"
+                           layoutX="193.0" layoutY="59.0" prefHeight="25.0"
+                           prefWidth="37.0" promptText="hh"
+                           AnchorPane.rightAnchor="70.0"/>
+                <TextField fx:id="textEndMinute" alignment="TOP_CENTER"
+                           layoutX="243.0" layoutY="59.0" prefHeight="25.0"
+                           prefWidth="37.0" promptText="mm"
+                           AnchorPane.rightAnchor="20.0"/>
+                <TextField fx:id="textIntervalMinute" alignment="TOP_CENTER"
+                           layoutX="243.0" layoutY="96.0" prefHeight="25.0"
+                           prefWidth="37.0" promptText="mm"
+                           AnchorPane.rightAnchor="20.0"/>
+            </children>
+        </AnchorPane>
+        <AnchorPane prefHeight="45.0" prefWidth="300.0">
+            <children>
+                <Button fx:id="buttonSave" layoutX="31.0" layoutY="15.0"
+                        mnemonicParsing="false" onAction="#actionTask"
+                        prefHeight="25.0" prefWidth="80.0" text="Зберегти"
+                        AnchorPane.bottomAnchor="10.0"
+                        AnchorPane.leftAnchor="30.0"
+                        AnchorPane.topAnchor="10.0"/>
+                <Button fx:id="buttonClose" layoutX="183.0" layoutY="15.0"
+                        mnemonicParsing="false" onAction="#actionClose"
+                        prefHeight="25.0" prefWidth="80.0" text="Скасувати"
+                        AnchorPane.bottomAnchor="10.0"
+                        AnchorPane.rightAnchor="30.0"
+                        AnchorPane.topAnchor="10.0"/>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>
