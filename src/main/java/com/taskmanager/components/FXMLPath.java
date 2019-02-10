@@ -1,6 +1,5 @@
 package com.taskmanager.components;
 
-import java.io.File;
 /**
  * This enum is responsible for the paths to the views FXML-files.
  */

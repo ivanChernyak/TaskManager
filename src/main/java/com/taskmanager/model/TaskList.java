@@ -11,7 +11,7 @@ public class TaskList {
     /**
      * Responsible for the file in which the task list is stored.
      */
-    private static final File file = new File(FilePath.DATA.getPath());
+    private static final File file =  new File(FilePath.DATA_FILE.getPath());
 
     /**
      * Responsible for storing the task list while the program is running.

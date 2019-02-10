@@ -27,12 +27,12 @@ public class CreateTaskController extends TaskController {
      */
     @FXML
     public void actionTask(ActionEvent actionEvent) {
-        if (validate()) {
-            TaskList.add(this.getInputTask());
-            LOG.info("Task create " + this.getInputTask().toString());
-            closeWindow(actionEvent);
-        } else {
-            alert("Будь ласка, заповніть усі поля для дати та часу коректно!");
+        if (validateTitle(getTextTitle())) {
+            if (validate()) {
+                TaskList.add(this.getInputTask());
+                LOG.info("Task create " + this.getInputTask().toString());
+                closeWindow(actionEvent);
+            }
         }
     }
 }

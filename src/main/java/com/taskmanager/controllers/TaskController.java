@@ -165,7 +165,7 @@ public abstract class TaskController extends InputController {
             }
             task.setActive(active);
         } catch (ParseException e) {
-            LOG.trace("ParseException: " + e.getMessage());
+            LOG.trace("Failed to parse input-date, ParseException: " + e.getMessage());
         }
         return task;
     }
@@ -176,9 +176,6 @@ public abstract class TaskController extends InputController {
      * @return true if data is valid, otherwise return false.
      */
     protected boolean validate() {
-        if ("".equals(textTitle.getText())) {
-            return false;
-        }
         if (!radioRepeat.isSelected()) {
             return validateTime(datePickerTime, textTimeHour, textTimeMinute);
         } else {

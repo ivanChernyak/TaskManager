@@ -158,12 +158,11 @@ public class MainController {
      */
     private void showView(String sceneTitle, FXMLPath resource) {
         FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(ClassLoader.getSystemResource(resource.getPath()));
         loader.setLocation(getClass().getResource(resource.getPath()));
         try {
             loader.load();
         } catch (IOException e) {
-            LOG.trace("IOException: " + e.getMessage());
+            LOG.trace("Failed to load view-file, IOException: " + e.getMessage());
         }
         Parent root = loader.getRoot();
         Stage stage = new Stage();

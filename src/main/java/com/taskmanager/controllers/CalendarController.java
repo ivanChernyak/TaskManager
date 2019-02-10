@@ -72,13 +72,9 @@ public class CalendarController extends InputController {
                     ObservableList<Map.Entry<Date, String>> tasks = FXCollections.observableList(entrySet);
                     tableTaskList.setItems(tasks);
                 } catch (ParseException e) {
-                    LOG.trace("ParseException: " + e.getMessage());
+                    LOG.trace("Failed to parse input-date, ParseException: " + e.getMessage());
                 }
-            } else {
-                alert("Будь ласка, виберіть дати в правильному порядку: старт перед закінченням!");
             }
-        } else {
-            alert("Будь ласка, заповніть усі поля для часу коректно!");
         }
     }
 

@@ -39,12 +39,12 @@ public class UpdateTaskController extends TaskController {
      */
     @Override
     public void actionTask(ActionEvent actionEvent) {
-        if (validate()) {
-            TaskList.update(updateTask, this.getInputTask());
-            LOG.info("Task update " + this.getInputTask().toString());
-            closeWindow(actionEvent);
-        } else {
-            alert("Будь ласка, заповніть усі поля для дати та часу коректно!");
+        if (validateTitle(getTextTitle())) {
+            if (validate()) {
+                TaskList.update(updateTask, this.getInputTask());
+                LOG.info("Task update " + this.getInputTask().toString());
+                closeWindow(actionEvent);
+            }
         }
     }
 

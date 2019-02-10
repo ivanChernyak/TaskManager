@@ -45,7 +45,7 @@ public class Notification implements Runnable {
                     }
                 });
             } catch (InterruptedException e) {
-                LOG.trace("InterruptedException: " + e.getMessage());
+                LOG.trace("Some thread interrupted the current thread, InterruptedException: " + e.getMessage());
             }
         }
     }

@@ -6,8 +6,8 @@ import java.io.File;
  * This enum is responsible for the paths to the data files.
  */
 public enum FilePath {
-    DATA("/data/data.txt");
-//    DATA(new File("data/data.txt").getAbsolutePath());
+    DATA_DIR(new File("TaskManagerData").getAbsolutePath()),
+    DATA_FILE(new File("TaskManagerData/data.txt").getAbsolutePath());
 
     private String path;
 

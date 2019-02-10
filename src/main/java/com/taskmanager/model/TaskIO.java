@@ -1,5 +1,6 @@
 package com.taskmanager.model;
 
+import com.taskmanager.components.FilePath;
 import org.apache.log4j.Logger;
 
 import java.io.*;
@@ -14,6 +15,7 @@ import java.util.List;
 public class TaskIO {
 
     private final static Logger LOG = Logger.getLogger(TaskIO.class);
+    private final static File dataDirectory = new File(FilePath.DATA_DIR.getPath());
 
     /**
      * This method writes tasks from the list to stream in binary format.
@@ -44,12 +46,12 @@ public class TaskIO {
                 }
             }
         } catch (IOException e) {
-            LOG.trace("IOException: " + e.getMessage());
+            LOG.trace("Failed to write information about task into data-file, IOException: " + e.getMessage());
         } finally {
             try {
                 dataOutput.close();
             } catch (IOException e) {
-                LOG.trace("IOException: " + e.getMessage());
+                LOG.trace("Failed to close data-file, IOException: " + e.getMessage());
             }
         }
     }
@@ -103,12 +105,12 @@ public class TaskIO {
                 i++;
             }
         } catch (IOException e) {
-            LOG.trace("IOException: " + e.getMessage());
+            LOG.trace("Failed to read information about task from data-file, IOException: " + e.getMessage());
         } finally {
             try {
                 dataInput.close();
             } catch (IOException e) {
-                LOG.trace("IOException: " + e.getMessage());
+                LOG.trace("Failed to close data-file, IOException: " + e.getMessage());
             }
         }
     }
@@ -121,9 +123,16 @@ public class TaskIO {
      */
     public static void writeBinary(List tasks, File file) {
         try {
+            if (!dataDirectory.exists()) {
+                if (dataDirectory.mkdir()) {
+                    LOG.info("Data-directory is created: " + dataDirectory.getAbsolutePath());
+                } else {
+                    LOG.info("Failed to create data-directory: " + dataDirectory.getAbsolutePath());
+                }
+            }
             write(tasks, new FileOutputStream(file));
         } catch (FileNotFoundException e) {
-            LOG.trace("IOException: " + e.getMessage());
+            LOG.trace("Failed to open data-file for writing, IOException: " + e.getMessage());
         }
     }
 
@@ -135,9 +144,16 @@ public class TaskIO {
      */
     public static void readBinary(List<Task> tasks, File file) {
         try {
+            if (!dataDirectory.exists()) {
+                if (dataDirectory.mkdir()) {
+                    LOG.info("Data-directory is created: " + dataDirectory.getAbsolutePath());
+                } else {
+                    LOG.info("Failed to create data-directory: " + dataDirectory.getAbsolutePath());
+                }
+            }
             read(tasks, new FileInputStream(file));
         } catch (FileNotFoundException e) {
-            LOG.trace("IOException: " + e.getMessage());
+            LOG.trace("Failed to open data-file for reading, IOException: " + e.getMessage());
         }
     }
 }

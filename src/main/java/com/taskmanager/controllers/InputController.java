@@ -183,9 +183,14 @@ public abstract class InputController {
             start = DATE_FORMAT.parse(textStart);
             end = DATE_FORMAT.parse(textEnd);
         } catch (ParseException e) {
-            LOG.trace("ParseException: " + e.getMessage());
+            LOG.trace("Failed to parse input-date, ParseException: " + e.getMessage());
         }
-        return start.before(end);
+        if (start.before(end))
+            return true;
+        else {
+            alert("Оберіть правильний порядок дат!");
+            return false;
+        }
     }
 
     /**
@@ -227,7 +232,12 @@ public abstract class InputController {
      * @return true if data is valid, otherwise return false.
      */
     protected boolean validateTime(DatePicker datePicker, TextField hour, TextField minute) {
-        return datePicker != null && validateInterval(hour, minute);
+        if (datePicker.getValue() == null) {
+            alert("Виберіть дату!");
+            return false;
+        } else {
+            return validateInterval(hour, minute);
+        }
     }
 
     /**
@@ -239,10 +249,35 @@ public abstract class InputController {
      */
     protected boolean validateInterval(TextField hour, TextField minute) {
         if ((hour.getText()).matches("\\d{2}") && (minute.getText()).matches("\\d{2}")) {
-            return ((Integer.parseInt(hour.getText()) < 24 && Integer.parseInt(hour.getText()) >= 0)
-                    && (Integer.parseInt(minute.getText()) < 60 && Integer.parseInt(minute.getText()) >= 0));
+            if (Integer.parseInt(hour.getText()) < 24 && Integer.parseInt(hour.getText()) >= 0) {
+                if (Integer.parseInt(minute.getText()) < 60 && Integer.parseInt(minute.getText()) >= 0) {
+                    return true;
+                } else {
+                    alert("Хвилини мають бути числами в діапазоні від 00 до 59!");
+                    return false;
+                }
+            } else {
+                alert("Години мають бути числами в діапазоні від 00 до 23!");
+                return false;
+            }
+
         } else {
+            alert("Години й хвилини мають бути числами!");
             return false;
+        }
+    }
+
+    protected boolean validateTitle(TextField textTitle) {
+        if ("".equals(textTitle.getText())) {
+            alert("Введіть назву задачі!");
+            return false;
+        } else {
+            if (textTitle.getLength() > 30) {
+                alert("Назва задачі має бути менше 30 символів!");
+                return false;
+            } else {
+                return true;
+            }
         }
     }
 }
